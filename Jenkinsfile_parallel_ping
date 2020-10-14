@@ -1,0 +1,42 @@
+def nodeList = ['Node01', 'Node02', 'Node03', 'Node04', 'Node05', 'Node06']
+def nodeJob = [:]
+
+pipeline {
+    
+    agent none
+
+    options {
+        timeout(time: 2, unit: 'HOURS') 
+    }
+
+    stages {
+    
+        stage('Setup') {
+            failFast true
+            steps {
+                script {
+                    nodeList.each { nodeName ->
+                        nodeJob[nodeName] = {
+                            node(nodeName) {
+                                bat 'ping 127.0.0.1'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Parallel') {
+            failFast true
+            steps {
+                script {
+                    parallel(nodeJob)
+                }
+            }
+        }
+
+    }
+}
+
+
+
