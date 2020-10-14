@@ -1,4 +1,4 @@
-nodeList = ['Node01', 'Node02', 'Node03', 'Node04', 'Node05', 'Node06']
+def nodeList = ['Node01', 'Node02', 'Node03', 'Node04', 'Node05', 'Node06']
 
 pipeline {
     
