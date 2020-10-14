@@ -1,2 +1,2 @@
 # Jenkins_101
-Jenkins basics
+Jenkins pipeline basics
